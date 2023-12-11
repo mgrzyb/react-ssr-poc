@@ -6,5 +6,5 @@ export const App = (props : { counter : { initialValue : number, step: number}, 
             <h1>Hello from React</h1>
             <Article article={props.article} />
             <Counter counter={props.counter} />
-            <span>{props.article.title}</span>
+
         </>);

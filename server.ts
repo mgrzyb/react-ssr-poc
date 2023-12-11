@@ -14,15 +14,10 @@ app.get('/', async (req : Request, res : Response) => {
         counter: { initialValue: 10, step: 2 },
         article: { title: "My first article", content: fs.readFileSync('./loremipsum.txt').toString() }
     };
-
-    const clientSideProps = {
-        counter: props.counter,
-        article: { title: props.article.title }
-    };
     
     const html = ReactDOMServer.renderToString(React.createElement(App, trackAccess(props)));
 
-    res.send(`<html><head></head><body>${html}<script>window.initialState = ${JSON.stringify(trimmed(props))}</script><script src="http://localhost:1234/client.js"></script></body></html>`);
+    res.send(`<html><head></head><body><div id="app">${html}</div><script>window.initialState = ${JSON.stringify(trimmed(props))}</script><script src="http://localhost:1234/client.js"></script></body></html>`);
 });
 
 app.listen(port, () => {
